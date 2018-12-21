@@ -13,111 +13,116 @@ from pytrends.request import TrendReq
 import pytrends
 
 # ---- Main stock bot function, saves a figure of the prediction of the trained neural network.
-def Stock_Bot:
-    exchange = 'iex'
-    verbose  = true
-    # Contructor takes stock name, optionally everything else
+class StockBot:
+    # ---- Contructor takes company name and stock name.
     def __init__(self, comp_name, stock_name, exchange = 'iex'):
         self.stock_name = stock_name
         self.comp_name = comp_name
     
+    # ---- Read up to date stock data and Google trends data.
     def pull(self, time_of_day = 'open'):
-        # ---- Read stock data and Google trends data.
         start = datetime.today() - timedelta(370 * 5)
         end = datetime.today() - timedelta(1)
-        df = web.DataReader(stock_name, 'iex', start, end)
-        stock = df.loc[:, time_of_day]
-        self.num = len(stock)
+        self.df = web.DataReader(self.stock_name, 'iex', start, end)
+        self.stock = self.df.loc[:, time_of_day]
+        self.num = len(self.stock)
 
         pytrends = TrendReq(hl='en-US', tz=300)
-        frame = df.index[0] + ' ' + df.index[-1]
-        pytrends.build_payload([comp_name], timeframe=frame, cat=0, geo='US')
-        search = pytrends.interest_over_time()
-
+        frame = self.df.index[0] + ' ' + self.df.index[-1]
+        pytrends.build_payload([self.comp_name], timeframe=frame, cat=0, geo='US')
+        self.trend = pytrends.interest_over_time()
+        
+    # ---- Scale and reorganize the data into the input format for the NN.
+    def scale(self, n_days):
+        self.num = n_days
+        
         # ---- Rescale trends data to be between -.5 and .5
-        trend_max = max(search.values[:, 0])
-        trend_min = min(search.values[:, 0])
+        trend_max = max(self.trend.values[:, 0])
+        trend_min = min(self.trend.values[:, 0])
         self.trend_range = trend_max - trend_min
-        self.trend_med = trend_min + (trend_range / 2)
-        search_scaled = np.zeros((len(search.values)))
-        search_scaled = (search.values[:, 0] - trend_med) / trend_range
+        self.trend_med = trend_min + (self.trend_range / 2)
+        self.trend_scaled = np.zeros((len(self.trend.values)))
+        self.trend_scaled = (self.trend.values[:, 0] - self.trend_med) / self.trend_range
 
         # ---- Format input features as (day, trend value)
-        self.x = np.zeros((num, 2))
+        self.x = np.zeros((self.num, 2))
         ind_cur = 0
-        trend_cur = search_scaled[ind_cur]
-        for i in range(len(x)):
-            x[i, 0] = (i / num) - .7
-            if (ind_cur < len(search_scaled) and search.index[ind_cur].year == int(df.index[i][:4]) and search.index[
-                ind_cur].month == int(df.index[i][5:7]) and search.index[ind_cur].day <= int(df.index[i][8:]) + 2 and
-                    search.index[ind_cur].day >= int(df.index[i][8:]) - 2):
-                trend_cur = search_scaled[ind_cur]
+        trend_cur = self.trend_scaled[ind_cur]
+        for i in range(len(self.x)):
+            self.x[i, 0] = (i / self.num) - .7
+            if (ind_cur < len(self.trend_scaled) and self.trend.index[ind_cur].year == int(self.df.index[i][:4]) and self.trend.index[
+                ind_cur].month == int(self.df.index[i][5:7]) and self.trend.index[ind_cur].day <= int(self.df.index[i][8:]) + 2 and
+                    self.trend.index[ind_cur].day >= int(self.df.index[i][8:]) - 2):
+                trend_cur = self.trend_scaled[ind_cur]
                 ind_cur += 1
-            x[i, 1] = trend_cur
+            self.x[i, 1] = trend_cur
 
         # ---- Normalize stock data
-        self.y = stock
         self.stock_scaler = MinMaxScaler()
-        y = np.array(stock).reshape(len(stock), 1)
-        stock_scaler = stock_scaler.fit(y)
-        y = stock_scaler.transform(y)
-        y = y.reshape(len(stock))
+        self.y = np.array(self.stock[:self.num]).reshape(len(self.stock[:self.num]), 1)
+        self.stock_scaler = self.stock_scaler.fit(self.y)
+        self.y = self.stock_scaler.transform(self.y)
+        self.y = self.y.reshape(self.num)
 
         # ---- Shuffle data
-        shuffle_indices = np.random.permutation(np.arange(len(y)))
-        y = y[shuffle_indices]
-        x = x[shuffle_indices]
+        shuffle_indices = np.random.permutation(np.arange(len(self.y)))
+        self.y = self.y[shuffle_indices]
+        self.x = self.x[shuffle_indices]
     
+    # ---- Construct and compile the neural network.
     def build(self):
         # ---- Construct network
-        network = models.Sequential()
-        network.add(layers.Dense(256, activation='relu', input_shape=(2,)))
-        network.add(layers.Dense(256, activation='relu'))
-        network.add(layers.Dense(256, activation='relu'))
-        network.add(layers.Dense(128, activation='relu'))
-        network.add(layers.Dense(128, activation='relu'))
-        network.add(layers.Dense(128, activation='relu'))
-        network.add(layers.Dense(64, activation='relu'))
-        network.add(layers.Dense(64, activation='relu'))
-        network.add(layers.Dense(64, activation='relu'))
-        network.add(layers.Dense(1))
+        self.network = models.Sequential()
+        self.network.add(layers.Dense(256, activation='relu', input_shape=(2,)))
+        self.network.add(layers.Dense(256, activation='relu'))
+        self.network.add(layers.Dense(256, activation='relu'))
+        self.network.add(layers.Dense(128, activation='relu'))
+        self.network.add(layers.Dense(128, activation='relu'))
+        self.network.add(layers.Dense(128, activation='relu'))
+        self.network.add(layers.Dense(64, activation='relu'))
+        self.network.add(layers.Dense(64, activation='relu'))
+        self.network.add(layers.Dense(64, activation='relu'))
+        self.network.add(layers.Dense(1))
 
         # ---- Compile network
-        network.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_squared_error'])
-        
-    def train(self, epochs, verbose):
-        history = network.fit(x, y, epochs=epochs, batch_size=50, verbose=verbose)
+        self.network.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_squared_error'])
+    
+    # ---- Train the neural network for the given number of epochs.
+    def train(self, epochs, verbose=0):
+        history = self.network.fit(self.x, self.y, epochs=epochs, batch_size=50, verbose=verbose)
+    
+    # ---- Create a test data set and predict on it.
+    def predict(self, n_days):    
+        # ---- Build test data set
+        self.xrange = n_days
+        self.x_test = np.zeros((self.xrange, 2))
+        ind_cur = 0
+        trend_cur = self.trend_scaled[ind_cur]
+        for i in range(len(self.x_test)):
+            self.x_test[i, 0] = (i / self.num) - .7
+            if (ind_cur < len(self.trend_scaled) and self.trend.index[ind_cur].year == int(self.df.index[i][:4]) and self.trend.index[
+                ind_cur].month == int(self.df.index[i][5:7]) and self.trend.index[ind_cur].day <= int(self.df.index[i][8:]) + 2 and
+                    self.trend.index[ind_cur].day >= int(self.df.index[i][8:]) - 2):
+                trend_cur = self.trend_scaled[ind_cur]
+                ind_cur += 1
+            self.x_test[i, 1] = trend_cur
+        self.y_pred = self.network.predict(self.x_test)
+        self.y_pred = self.stock_scaler.inverse_transform(self.y_pred)[:, 0]
+    
+    # ---- Create a plot of the current predicted data vs. the actual stock data.
+    def graph(self):
+        # ---- Plot the predicted data
+        step = 200
+        base = datetime.strptime(self.df.index[0], '%Y-%m-%d')
+        xlabels = [(base + timedelta(days=step * self.x_test * 7 / 5)).date() for self.x_test in range(0, math.ceil(self.xrange / step))]
 
-        
-    # ---- Build test data set
-    xrange = 1259
-    x_test = np.zeros((xrange, 2))
-    ind_cur = 0
-    trend_cur = search_scaled[ind_cur]
-    for i in range(len(x_test)):
-        x_test[i, 0] = (i / num) - .7
-        if (ind_cur < len(search_scaled) and search.index[ind_cur].year == int(df.index[i][:4]) and search.index[
-            ind_cur].month == int(df.index[i][5:7]) and search.index[ind_cur].day <= int(df.index[i][8:]) + 2 and
-                search.index[ind_cur].day >= int(df.index[i][8:]) - 2):
-            trend_cur = search_scaled[ind_cur]
-            ind_cur += 1
-        x_test[i, 1] = trend_cur
-    y_pred = network.predict(x_test)
-    y_pred = stock_scaler.inverse_transform(y_pred)[:, 0]
+        plt.figure(figsize=(10, 7))
+        plt.plot(np.arange(0, self.num), self.stock)
+        plt.plot(np.arange(0, self.xrange), self.y_pred, lw=3)
 
-    # ---- Plot the predicted data
-    step = 200
-    base = datetime.strptime(df.index[0], '%Y-%m-%d')
-    xlabels = [(base + timedelta(days=step * x_test * 7 / 5)).date() for x_test in range(0, math.ceil(xrange / step))]
-
-    plt.figure(figsize=(10, 7))
-    plt.plot(np.arange(0, num), stock)
-    plt.plot(np.arange(0, xrange), y_pred, lw=3)
-
-    plt.xlabel('Date')
-    plt.xticks(np.arange(0, 1400, step=step), xlabels, rotation=30)
-    plt.ylabel('Price')
-    plt.title(comp_name + ' Stock Price')
-    plt.savefig('figures/' + comp_name + '_pred' + '.png')
-    plt.show()
-    plt.close()
+        plt.xlabel('Date')
+        plt.xticks(np.arange(0, 1400, step=step), xlabels, rotation=30)
+        plt.ylabel('Price')
+        plt.title(self.comp_name + ' Stock Price')
+        plt.savefig('figures/' + self.comp_name + '_pred' + '.png')
+        plt.close()
