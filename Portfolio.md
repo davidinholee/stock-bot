@@ -21,16 +21,13 @@ Our goal was to create a machine learning model that could effectively predict s
 All of our work is documented and collected in the following github repository:
 https://github.com/davidinholee/stock-bot/
 
-## Annotated Bibliography
+# Annotated Bibliography
 
 +-----------------+-----------------+-----------------+-----------------+
-| Use EasyBib to  | Brief Summary   | Assess the uses | New Questions   |
-| create          |                 | and limits of   |                 |
-| bibliographic   |                 | this work in    |                 |
-| citations in    |                 | relation to     |                 |
-| the citation    |                 | your own        |                 |
-| style of the    |                 | thinking        |                 |
-| discipline      |                 |                 |                 |
+| Citations       | Brief Summary   | Uses and limits | New Questions   |
+|                 |                 | of this work in |                 |
+|                 |                 | relation to our |                 |
+|                 |                 | own thinking    |                 |
 +-----------------+-----------------+-----------------+-----------------+
 | 1\. Chollet,    | This book       | The code        | Is Keras, the   |
 | Francois.       | offers an in    | examples        | main Python     |
@@ -410,34 +407,32 @@ https://github.com/davidinholee/stock-bot/
 |                 |                 | also be useful. |                 |
 +-----------------+-----------------+-----------------+-----------------+
 
-## Copies of Thank You Letters to Community Members
+# Thank You Letters to Community Members
 
 Thank you letter to Eddie?!?!
 
-## Examples from Your Formative Reflection Journal
+# Examples from Your Formative Reflection Journal
 
 
 
-## Annotated Photographs Depicting the Project Development
+# Annotated Photographs Depicting the Project Development
 
-# Reflections
+# Formative Reflections
 
-## Formative
+# Summative Reflections
 
-## Summative
-
-### Backward-Looking
+## Backward-Looking
 
 - 
 
-### Inward-Looking
+## Inward-Looking
 
 - 
 
-### Outward-Looking
+## Outward-Looking
 
 - 
 
-### Forward-Looking
+## Forward-Looking
 
 - 
