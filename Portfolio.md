@@ -6,15 +6,20 @@ geometry: margin=1in
 
 # Proposal
 
-Max and I will be spending the semester researching and studying the complex field of machine learning. Machine learning is a way for computers to "learn" with data and be able to predict future outcomes or tendencies. For instance, creating an AI that can play chess, showing curated online ads, facial recognition, and Google Translate are all examples of where machine learning is applied. Our goal is to apply machine learning to various markets; we thought this would be interesting because markets are not very easily predictable by humans but may have predictable trends that a machine could pick up.
+We will be spending the semester researching and studying the complex field of machine learning. Machine learning is a way for computers to "learn" with data and be able to predict future outcomes or tendencies. For instance, creating an AI that can play chess, showing curated online ads, facial recognition, and Google Translate are all examples of where machine learning is applied. Our goal is to apply machine learning to various markets; we thought this would be interesting because markets are not very easily predictable by humans but may have predictable trends that a machine could pick up.
 
-Our main project will be to analyze the stock market. We want to create a bot that will be able to predict whether stocks will rise or fall, given the past history of the stock as well as other data (like twitter mentions) that we need to determine. Our reasoning for starting with the stock market is because there are large backlogs of data that we can train and test our models on. Also, we can invest a ton of money after finishing our bot and get rich! If we are successful in accomplishing this task, we also have plans to apply similar systems to the cryptocurrency market or the job market.
+Our main project will be to analyze the stock market. We want to create a bot that will be able to predict whether stocks will rise or fall, given the past history of the stock as well as other data (like twitter mentions) that we need to determine. Our reasoning for starting with the stock market is that there are large backlogs of data that we can train and test our models on. We can also invest a ton of money after finishing our bot and get rich! If we are successful in accomplishing this task, we also have plans to apply similar systems to the cryptocurrency market or the job market.
 
-By working together on this project, we will be able to combine the different skill sets we bring from our areas of "expertise". I have worked a lot with machine learning and the theory behind many of the concepts we will deal with through different internships in the past. Max has worked a lot with robotics and has a very well rounded computer science background, as well as currently taking an economics course at Harvard. We are both excited to work on this project for this current semester!
+By working together on this project, we will be able to combine the different skill sets we bring from our areas of "expertise". David has worked a lot with machine learning and the theory behind many of the concepts we will deal with through different internships in the past. Max has worked a lot with robotics and has a very well rounded computer science background, as well as currently taking an economics course at Harvard. We are both excited to work on this project for this current semester!
 
 # Brief Project Overview
 
+Our goal was to create a machine learning model that could effectively predict stock prices on the stock market. We started with a linear regression model to make sure we could work with the simplest type of model and that the general format of our data was correct. We then quickly ramped up the complexity - we worked on implementing a neural network. After finally figuring out the format of the data that our network wanted, we began the slow and painful process of actually finding the right parameters and data structure that would let our network perform efficiently. At first, our network only predicted accurately on the first few days of data, but eventually over time we got a decent general prediction over the entire log of data and into the future. After this, we found an API for Google Search mentions and incorporated that into our network, and after some fine tuning, our model became very accurate on our data logs and the future. After testing this model on 29 of the largest publicly traded companies in the world, we found that on a good run our network could predict the one month return of 28 out of the 29 companies correctly, and have a 8.4% return compared to the 0.6% average return of the whole market.
+
 # Supporting Documents
+
+All of our work is documented and collected in the following github repository:
+https://github.com/davidinholee/stock-bot/
 
 ## Annotated Bibliography
 
@@ -407,7 +412,11 @@ By working together on this project, we will be able to combine the different sk
 
 ## Copies of Thank You Letters to Community Members
 
+Thank you letter to Eddie?!?!
+
 ## Examples from Your Formative Reflection Journal
+
+
 
 ## Annotated Photographs Depicting the Project Development
 
