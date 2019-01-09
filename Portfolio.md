@@ -411,13 +411,9 @@ https://github.com/davidinholee/stock-bot/
 
 Thank you letter to Eddie?!?!
 
-# Examples from Your Formative Reflection Journal
-
-
-
-# Annotated Photographs Depicting the Project Development
-
 # Formative Reflections
+
+## Annotated Photographs Depicting the Project Development
 
 # Summative Reflections
 
