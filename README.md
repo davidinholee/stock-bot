@@ -5,16 +5,38 @@ Our goal was to create a machine learning model that could effectively predict s
 
 ## Documentation of Code
 
-### `Stockbot` class
+### `StockBot` class
+Main stock bot function, saves a figure of the prediction of the trained neural network.
 |function|arguments|purpose|
 |---|---|---|
-|pull|stock|pull data and store in obj|
-|build|arguments relating to layers (list?)|resets network by rebuilding layers|
-|train|range of dataset|builds a prediction function|
-|predict|day|uses trained prediction function and scales|
+|constructor|company name, stock name, exchange|initializes basic characteristics of object|
+|pull|time of day (open, close, high, low, mid)|Read up to date stock data and Google trends data|
+|scale|number of days from five years ago|Scale and reorganize the data into the input format for the NN|
+|build|None|Construct and compile the neural network|
+|train|epochs (iterations of training), verbose (1 or 0)|Train the neural network for the given number of epochs|
+|predict|number of days from five years ago|Create a test data set and predict on it|
+|graph|None|Create a plot of the current predicted data vs the actual stock data|
 
-### Testing Library
-|function|arguments|purpose|
-|---|---|---|
-|simple_test|prediction function, |returns average difference b/t predicted value and actual value|
+### Checking Script
+Evaluates performance of the model.
 
+### Prediction Script
+Makes predictions on a set of stocks for how much each will return.
+
+### Libraries imported
+- `numpy`
+  - Fast matrix/multidimensional array math library
+- `time`
+  - Basic time conversion and manipulation
+- `matplotlib`
+  - Creating beautiful plots
+- `pandas_datareader`
+  - Getting stock data
+- `sklearn`
+  - Data preprocessing
+- `keras`
+  - Constructing and training neural network
+- `math`
+  - Duh.
+- `pytrends`
+  - Getting google search trend data
