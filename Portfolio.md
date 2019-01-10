@@ -413,7 +413,16 @@ Thank you letter to Eddie?!?!
 
 # Formative Reflections
 
-## Annotated Photographs Depicting the Project Development
+- Logistic Regression Model: We were able to build an effective logistic regression machine learnign model fairy easily. The hardest task was figuring out the best way to obtain the data that we needed. We spent a lot of time looking for the best API for getting consistant, reliable stock data. After deciding on the API, pandas-datareader, we spent time playing around with the library to see what data we could access. We ended up finding out we could reliably get daily stock data for the past five years, giving us approximately 1250 points of data. We then theorized about early preprocessing methods, and organized the stock data into the format we wanted. Creating the actual machine learning model was pretty simple after that, especially because we had a lot of experience with this type of model from previous internships.
+(insert image from slide 16 here)
+
+- Early Neural Network Development: We had many challenges when first implementing a neural network for our project. It was challenging to figure out how to shape the data to the very specific requirements of the network. Even after finishing this, we had to figure out what to do with all the hyperparameters of the actual network. After completing the very first generation of our network, the performance we were getting was terrible. The model performed fairly well for the first few days of the stock data, but then quickly predicted linearly after that. 
+(insert image from slide 17 here)
+The most amount of time spent during this whole process was trying to figure out how exactly we needed to normalize our data so that the neural network would put the same amount of emphasis to each day of data instead of the first few days like we were thinking. We also had to keep tinkering with the number of epochs, the size of each layer, the number of layers, whether or not to include dropout or other types of layers, loss function, etc. to find the best possible performance for our network. But after working at this problem for a long time, we eventually landed a model that we were happy with and was performing decently well.
+(insert image from slide 18 here)
+
+- Later Neural Network Development: We decided as a next step to incorporate more data into the network, as the ~1250 samples we were using for our input was not very large at all compared to the hundreds of thousands to millions of data samples that is usually recommended for machine learning models. We thus ended up looking for an API that could access twitter data or some other data relevant to internet mentions. We landed on using the pytrends package which accesses Google Trends data. This worked well for us because it would give the network information on how much the stock of interest was being mentioned in the news, which definitely has a direct effect on the actual stock price. We had to restructure our entire data input to accodomate 
+
 
 # Summative Reflections
 
