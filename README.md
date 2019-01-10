@@ -10,13 +10,13 @@ Main stock bot function, saves a figure of the prediction of the trained neural 
 
 |function|arguments|purpose|
 |---|---|---|
-|constructor|company name, stock name, exchange|initializes basic characteristics of object|
+|constructor|company name, stock name, exchange|Initializes basic characteristics of object|
 |pull|time of day (open, close, high, low, mid)|Read up to date stock data and Google trends data|
 |scale|number of days from five years ago|Scale and reorganize the data into the input format for the NN|
-|build|None|Construct and compile the neural network|
+|build|none|Construct and compile the neural network|
 |train|epochs (iterations of training), verbose (1 or 0)|Train the neural network for the given number of epochs|
 |predict|number of days from five years ago|Create a test data set and predict on it|
-|graph|None|Create a plot of the current predicted data vs the actual stock data|
+|graph|none|Create a plot of the current predicted data vs the actual stock data|
 
 ### Checking Script
 Evaluates performance of the model.
@@ -24,7 +24,7 @@ Evaluates performance of the model.
 ### Prediction Script
 Makes predictions on a set of stocks for how much each will return.
 
-### Libraries imported
+### Libraries Used
 - `numpy`
   - Fast matrix/multidimensional array math library
 - `time`
@@ -37,7 +37,7 @@ Makes predictions on a set of stocks for how much each will return.
   - Data preprocessing
 - `keras`
   - Constructing and training neural network
-- `math`
-  - Duh.
 - `pytrends`
   - Getting google search trend data
+- `math`
+  - Duh
