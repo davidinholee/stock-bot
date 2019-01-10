@@ -27,8 +27,6 @@ Makes predictions on a set of stocks for how much each will return.
 ### Libraries Used
 - `numpy`
   - Fast matrix/multidimensional array math library
-- `time`
-  - Basic time conversion and manipulation
 - `matplotlib`
   - Creating beautiful plots
 - `pandas_datareader`
@@ -39,5 +37,7 @@ Makes predictions on a set of stocks for how much each will return.
   - Constructing and training neural network
 - `pytrends`
   - Getting google search trend data
+- `time`
+  - Timing
 - `math`
   - Duh
