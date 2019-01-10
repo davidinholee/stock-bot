@@ -7,6 +7,7 @@ Our goal was to create a machine learning model that could effectively predict s
 
 ### `StockBot` class
 Main stock bot function, saves a figure of the prediction of the trained neural network.
+
 |function|arguments|purpose|
 |---|---|---|
 |constructor|company name, stock name, exchange|initializes basic characteristics of object|
