@@ -423,6 +423,7 @@ https://github.com/davidinholee/stock-bot/
 > Happy New Years!
 > 
 > Best,
+> 
 > Max Katz-Christy and David Inho Lee
 
 # Formative Reflections
