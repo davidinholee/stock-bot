@@ -1,9 +1,14 @@
 ---
 title: Machine Learning and Market Analysis
-author: David Lee; Max Katz-Christy
+author:
+- David Lee
+- Max Katz-Christy
 geometry: margin=1in
 toc: true
+toc-depth: 1
 ---
+
+\newpage
 
 # Proposal
 
@@ -408,6 +413,17 @@ https://github.com/davidinholee/stock-bot/
 |                 |                 | also be useful. |                 |
 +-----------------+-----------------+-----------------+-----------------+
 
+# Thank You Letters to Community Members
+
+## To Eddie Kohler, Harvard CompSci 61 Professor
+> Hi Eddie,
+> 
+> Thanks so much for the class! It was a fantastic experience and I learned so much. I really appreciate your generosity in going out of your way to let high school students to take your class and taking on the extra work that comes with it. On top of that you were a great teacher and made the class very interesting and a lot of fun. A number of CS interested students have approached me inquiring about classes at Harvard, and so if you are still willing next year, there's a good chance that a few of them will be interested.
+> 
+> Happy New Years!
+> 
+> Best,
+> Max Katz-Christy and David Inho Lee
 
 # Formative Reflections
 
