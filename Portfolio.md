@@ -18,6 +18,8 @@ Our main project will be to analyze the stock market. We want to create a bot th
 
 By working together on this project, we will be able to combine the different skill sets we bring from our areas of "expertise". David has worked a lot with machine learning and the theory behind many of the concepts we will deal with through different internships in the past. Max has worked a lot with robotics and has a very well rounded computer science background, as well as currently taking an economics course at Harvard. We are both excited to work on this project for this current semester!
 
+\newpage
+
 # Brief Project Overview
 
 Our goal was to create a machine learning model that could effectively predict stock prices on the stock market. We started with a linear regression model to make sure we could work with the simplest type of model and that the general format of our data was correct. We then quickly ramped up the complexity - we worked on implementing a neural network. After finally figuring out the format of the data that our network wanted, we began the slow and painful process of actually finding the right parameters and data structure that would let our network perform efficiently. At first, our network only predicted accurately on the first few days of data, but eventually over time we got a decent general prediction over the entire log of data and into the future. After this, we found an API for Google Search mentions and incorporated that into our network, and after some fine tuning, our model became very accurate on our data logs and the future. After testing this model on 29 of the largest publicly traded companies in the world, we found that on a good run our network could predict the one month return of 28 out of the 29 companies correctly, and have a 8.4% return compared to the 0.6% average return of the whole market.
@@ -26,6 +28,8 @@ Our goal was to create a machine learning model that could effectively predict s
 
 All of our work is documented and collected in the following github repository:
 https://github.com/davidinholee/stock-bot/
+
+\newpage
 
 # Annotated Bibliography
 
@@ -413,6 +417,8 @@ https://github.com/davidinholee/stock-bot/
 |                 |                 | also be useful. |                 |
 +-----------------+-----------------+-----------------+-----------------+
 
+\newpage
+
 # Thank You Letters to Community Members
 
 ## To Eddie Kohler, Harvard CompSci 61 Professor
@@ -425,6 +431,8 @@ https://github.com/davidinholee/stock-bot/
 > Best,
 > 
 > Max Katz-Christy and David Inho Lee
+
+\newpage
 
 # Formative Reflections
 
@@ -446,6 +454,8 @@ The most amount of time spent during this whole process was trying to figure out
 
 ![](demos/results_all.png?raw=true)
 ![](demos/results_top.png?raw=true)
+
+\newpage
 
 # Summative Reflection Letter
 
